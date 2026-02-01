@@ -13,12 +13,15 @@ public class UserService {
 
     // Parameterized query prevents SQL injection
     public void findUser(String username) throws SQLException {
-        String query = "SELECT * FROM users WHERE name = ?";
+        String query = "SELECT id, name FROM users WHERE name = ?";
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/db", "root", password);
              PreparedStatement st = conn.prepareStatement(query)) {
             st.setString(1, username);
             try (ResultSet rs = st.executeQuery()) {
-                // process result set as needed
+                while (rs.next()) {
+                    rs.getLong("id");
+                    rs.getString("name");
+                }
             }
         }
     }
