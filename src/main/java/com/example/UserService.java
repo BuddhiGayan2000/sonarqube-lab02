@@ -29,6 +29,7 @@ public class UserService {
     // SMELL: Unused method
     public void notUsed() {
         System.out.println("I am never called");
+        
     }
 
     // Parameterized query prevents SQL injection; try-with-resources closes resources
